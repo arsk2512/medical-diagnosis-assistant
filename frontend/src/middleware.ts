@@ -10,6 +10,9 @@ export const config = {
     "/(api|trpc)(.*)",
     "/health-tracker/:path*",
     "/symptoms/:path*",
-    "/clicnic-locator/:path*",
+    "/clinic-locator/:path*",
+    "/",
+    "/sign-in",
+    "/sign-up",
   ],
 };
