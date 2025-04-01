@@ -5,9 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { AlertTriangle, Search } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { DisclaimerBanner, ClinicLocatorDemo } from "@/components";
 
 export default function ClinicLocatorPage() {
@@ -47,7 +45,7 @@ export default function ClinicLocatorPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex space-x-2">
+            {/* <div className="flex space-x-2">
               <div className="flex-1">
                 <Input
                   placeholder="Enter zip code or city"
@@ -58,11 +56,10 @@ export default function ClinicLocatorPage() {
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
-            </div>
+            </div> */}
+            <ClinicLocatorDemo />
           </CardContent>
         </Card>
-
-        <ClinicLocatorDemo />
 
         <div className="mt-12 text-center text-sm text-muted-foreground">
           <p>

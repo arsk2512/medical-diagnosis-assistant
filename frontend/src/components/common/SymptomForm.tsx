@@ -33,30 +33,25 @@ export default function SymptomForm() {
 
     setIsLoading(true);
 
-    // Simulate API call with timeout
-    setTimeout(() => {
-      // This is mock data - in a real app, this would come from an AI model
-      setResult({
-        generalInfo:
-          "The symptoms you've described could be associated with several common conditions. This information is provided for educational purposes only.",
-        possibleCauses: [
-          "Common cold or seasonal allergies",
-          "Stress or anxiety",
-          "Dehydration or nutritional factors",
-          "Minor viral infection",
-        ],
-        selfCare: [
-          "Rest and ensure adequate hydration",
-          "Monitor symptoms for any changes",
-          "Practice stress-reduction techniques if applicable",
-          "Maintain a balanced diet",
-        ],
-        whenToSeek:
-          "If symptoms persist for more than a few days, worsen suddenly, or if you experience severe pain, difficulty breathing, or other concerning symptoms, consult a healthcare professional immediately.",
+    try {
+      const response = await fetch("/api/get-symptoms-cure", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: symptoms }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to fetch data");
+      }
+
+      const data = await response.json();
+      setResult(data);
+    } catch (err) {
+      console.error("Error:", err);
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (
